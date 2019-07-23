@@ -1,27 +1,31 @@
-# Hypha
+# Hypha Desktop
+
+Hypha is an Electron app powered by InterPlanetary File System (IPFS). This project is still experimental and under heavy development. So, there might be some dragons 🐉.
 
 ![Screen](media/screen.png)
 
-Hypha is an Electron app powered by InterPlanetary File System (IPFS). This project is still experimental and under heavy development. Heads up! There might be some dragons 🐉.
 
-## Project structure
-
-* Scripts related to IPFS are in ***`src` folder.
-
-* Components realted to web UI are in `ui` folder.
-
-## Dev
+## How to run dev environment up
 
 ```
 npm run start:dev
 ```
 
-## Build
+## How to build
 
 ```
 npm build
 ```
 
+## Project structure
+
+* assets: Currently, icons and compiled web UI components will be placed in this folder.
+
+* media: Screen shots for this repository are in this folder.
+
+* src: All scripts to related to Electron and IPFS are in this folder.
+
+* ui: All web UI components are in this folder.
 
 ## Rough road map
 
