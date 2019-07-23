@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+
+  border-bottom: 1px solid rgba(239, 232, 227, 0.6);
+  width: 100%;
+  padding: 2rem 0 1rem;
+}
+
+.form {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+
+  width: 100%;
+  max-width: 43rem;
+  min-width: 35.5rem;
+  margin: 0 auto 0;
+}
+
+.hash {
+  background-color: #FFFFFF;
+  border-radius: 0.5rem;
+  border: 1.5px solid rgba(250, 232, 214, 0.95);
+  color: #725B54;
+  font-size: 0.9rem;
+  width: 100%;
+  height: 2.4rem;
+  padding: 0 1rem;
+  outline: none;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+
+  color: #D86143;
+  font-size: 0.8rem;
+  padding: 0.7rem 0 0 0.07rem;
+}
+
+.iconHash {
+  color: #725B54;
+  margin: 0 0.3rem 0 0;
+}
+
+.iconPeer {
+  color: #725B54;
+  margin: 0 0.3rem 0 1.5rem;
+}

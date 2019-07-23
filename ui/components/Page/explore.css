@@ -1,0 +1,53 @@
+.section {
+  position: relative;
+
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+}
+
+.spinner {
+  padding: 0 0 4rem 0;
+}
+
+.htmlContainer {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  padding: 1rem 0 4rem 0;
+}
+
+.html {
+  color: rgba(65, 48, 38, 0.75);
+  line-height: 1.8;
+
+  width: 43rem;
+  min-width: 35.5rem;
+  margin: 0 auto 0;
+}
+
+.html h1, h2, h3, h4, h5 {
+  color: rgba(65, 48, 38);
+}
+
+.html a {
+  color: #EF8A73;
+}
+
+.html img {
+  width: 100%;
+}
+
+.html hr {
+  border: 0;
+  border-top: 0.5px solid rgba(65, 48, 38, 0.2);
+}
+
+.html figure {
+  margin: 1.6rem 0;
+}

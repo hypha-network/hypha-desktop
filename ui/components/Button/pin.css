@@ -1,0 +1,26 @@
+.button {
+  position: absolute;
+  top: 8.3rem;
+  right: 1.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: rgba(239, 138, 115, 0.8);
+  border-radius: 0.8rem;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 0.5rem 0.7rem;
+}
+
+.pin {
+  color: #FFFFFF;
+  margin: 0 0.3rem 0 0;
+}
+
+.pinned {
+  background-color: rgba(148, 180, 103, 0.8);
+}
