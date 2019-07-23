@@ -19,13 +19,13 @@ npm build
 
 ## Project structure
 
-* assets: Currently, icons and compiled web UI components will be placed in this folder.
+* [assets](src): Currently, icons and compiled web UI components will be placed here.
 
-* media: Screen shots for this repository are in this folder.
+* [media](media): Screen shots and other materials are in this folder.
 
-* src: All scripts to related to Electron and IPFS are in this folder.
+* [src](src): Electron and IPFS scripts are in this directory.
 
-* ui: All web UI components are in this folder.
+* [ui](ui): All web UI components reside in this folder.
 
 ## Rough road map
 
