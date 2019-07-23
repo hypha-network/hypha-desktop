@@ -16,7 +16,8 @@ export const Welcome = () => {
         <br />
         Hypha is an Electron app powered by InterPlanetary File System (IPFS).
         The goal of this app is to provide everyone an easier way to discover
-        contents stored on IPFS. This app is an open source porject. Feel free to join in.
+        contents stored on IPFS. This app is an open source porject. Feel free
+        to join in.
         <br />
         <br />
         OK, let's explore interesting contents by entering IPFS hash.
