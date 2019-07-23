@@ -2,12 +2,18 @@
 
 ![Screen](media/screen.png)
 
-Hypha is an Electron app powered by InterPlanetary File System (IPFS). This project is still experimental and under heavy development. Beware dragons 🐉.
+Hypha is an Electron app powered by InterPlanetary File System (IPFS). This project is still experimental and under heavy development. Heads up! There might be some dragons 🐉.
+
+## Project structure
+
+* Scripts related to IPFS are in ***`src` folder.
+
+* Components realted to web UI are in `ui` folder.
 
 ## Dev
 
 ```
-npm start:dev
+npm run start:dev
 ```
 
 ## Build
