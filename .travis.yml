@@ -8,8 +8,10 @@ os:
 
 jobs:
   include:
-    - script: npm run format:ui -- --check
-    - script: npm run build
+    - stage: check and test
+      script: npm run format:ui -- --check
+    - stage: build
+      script: npm run build
     - stage: GitHub Release
       script: echo "Deploying to GitHub releases ..."
       deploy:
