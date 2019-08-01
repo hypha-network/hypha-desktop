@@ -21,6 +21,7 @@ jobs:
         provider: releases
         api_key: $GITHUB_TOKEN
         file: ${RELEASE_PKG_FILE}
+        overwrite: true
         skip_cleanup: true
         draft: true
         on:
