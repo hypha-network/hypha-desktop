@@ -1,0 +1,28 @@
+language: node_js
+
+node_js:
+  - 12.7.0
+
+os:
+  - osx
+
+jobs:
+  include:
+    - stage: check and test
+      script: npm run format:ui -- --check
+    - stage: build
+      script: npm run build
+    - stage: GitHub Release
+      script: echo "Deploying to GitHub releases ..."
+      before_deploy:
+        - export RELEASE_PKG_FILE=$(ls -p | grep -v /)
+        - echo "deploying $RELEASE_PKG_FILE to GitHub releases"
+      deploy:
+        provider: releases
+        api_key: $GITHUB_TOKEN
+        file: ${RELEASE_PKG_FILE}
+        overwrite: true
+        skip_cleanup: true
+        draft: true
+        on:
+          tags: true
