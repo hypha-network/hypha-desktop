@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Archive, Radio, Search } from 'react-feather'
+import { FileText, Radio, Search } from 'react-feather'
 
 import { PageContext } from '../Context/page'
 
@@ -27,11 +27,11 @@ export const SideMenu = () => {
           Explore
         </li>
         <li
-          className={page === 'files' ? css.active : ''}
-          onClick={() => click('files')}
+          className={page === 'articles' ? css.active : ''}
+          onClick={() => click('articles')}
         >
-          <Archive className={css.icon} size={17} />
-          Files
+          <FileText className={css.icon} size={17} />
+          Articles
         </li>
         <li
           className={page === 'peers' ? css.active : ''}

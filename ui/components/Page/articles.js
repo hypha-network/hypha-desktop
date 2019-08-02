@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { ipfs } from '../../common/ipfs'
 import { Spinner } from '../Spinner'
 
-import css from './files.css'
+import css from './articles.css'
 
-export const Files = () => {
+export const Articles = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export const Files = () => {
         <Spinner
           containerClass={css.spinner}
           size={30}
-          text="Files loading ..."
+          text="Articles loading ..."
         />
       )}
     </section>

@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 
 import { PageContext } from '../Context/page'
+import { Articles } from './articles'
 import { Explore } from './explore'
-import { Files } from './files'
 import { Peers } from './peers'
 
 export const Page = () => {
@@ -11,8 +11,8 @@ export const Page = () => {
   switch (page) {
     case 'explore':
       return <Explore />
-    case 'files':
-      return <Files />
+    case 'articles':
+      return <Articles />
     case 'peers':
       return <Peers />
   }
