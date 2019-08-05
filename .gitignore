@@ -1,0 +1,11 @@
+assets/build
+assets/ui
+config.gypi
+dist
+node_modules
+out
+.cache
+.DS_Store
+*.nupkg
+*.bak
+*.swp

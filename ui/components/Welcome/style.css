@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  color: rgba(65, 48, 38, 0.4);
+  width: 43rem;
+  max-width: 43rem;
+  min-width: 35.5rem;
+  margin: 6.5rem auto 0;
+}
+
+.emoji {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 3.5rem;
+  font-weight: bold;
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin: 3rem 0 0;
+  hyphens: auto;
+}
