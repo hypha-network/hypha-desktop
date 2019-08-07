@@ -21,7 +21,8 @@ jobs:
       deploy:
         provider: releases
         api_key: $GH_TOKEN
-        file: ${RELEASE_PKG_FILE}
+        file_glob: true
+        file: dist/*
         overwrite: true
         skip_cleanup: true
         draft: true
