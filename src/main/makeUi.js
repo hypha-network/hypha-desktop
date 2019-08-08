@@ -4,7 +4,9 @@ import { join } from 'path'
 import { SIZE } from '../common/enum'
 
 // Electron reload shoule be used only in development
-require('electron-reload')(join(__dirname, '../../assets/ui'))
+if (process.env.NODE_ENV === 'development') {
+  require('electron-reload')(join(__dirname, '../../assets/ui'))
+}
 
 const { WIDTH, HEIGHT } = SIZE
 
@@ -40,7 +42,7 @@ const initWindow = () => {
   return window
 }
 
-export default async (context) => {
+export default async context => {
   const window = initWindow(context)
   const uiPath = 'file://' + join(__dirname, '../../assets/ui', 'index.html')
   let apiAddress = null
