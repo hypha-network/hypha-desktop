@@ -6,7 +6,7 @@ const WebpackBuildNotifierPlugin = require('webpack-build-notifier')
 module.exports = {
   mode: 'development',
 
-  context: path.join(__dirname, 'ui'),
+  context: path.join(__dirname, 'src', 'ui'),
 
   entry: ['./index.js'],
 
