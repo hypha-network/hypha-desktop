@@ -11,7 +11,7 @@
     "clean:ui": "shx rm -rf assets/ui/",
     "dev:electron": "wait-on assets/ui/index.js; cross-env NODE_ENV=development electron -r @babel/register src/index.js",
     "dev:ui": "webpack --progress --colors --config webpack.ui.config.js",
-    "format:ui": "prettier --write \"ui/**/*.{js,json}\"",
+    "format:ui": "prettier --write \"src/ui/**/*.{js,json}\"",
     "install-app-deps": "electron-builder install-app-deps",
     "postinstall": "run-s install-app-deps",
     "start:dev": "npm run clean:ui; concurrently \"npm:dev:ui\" \"npm:dev:electron\""
