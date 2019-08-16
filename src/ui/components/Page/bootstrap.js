@@ -12,11 +12,7 @@ const NodesTable = ({ nodes, remove }) => {
     <tr key={index}>
       <td width="90%">{node}</td>
       <td width="10%">
-        <Trash2
-          className={css.trash}
-          size={16}
-          onClick={() => remove(node)}
-        />
+        <Trash2 className={css.trash} size={16} onClick={() => remove(node)} />
       </td>
     </tr>
   ))
@@ -48,7 +44,7 @@ export const Bootstrap = () => {
 
   const [nodes, setNodes] = useState([])
 
-  const add = async (node) => {
+  const add = async node => {
     if (ipfs) {
       ipfs.bootstrap
         .add(node)
@@ -68,7 +64,7 @@ export const Bootstrap = () => {
     }
   }
 
-  const remove = async (node) => {
+  const remove = async node => {
     if (ipfs) {
       ipfs.bootstrap
         .rm(node)

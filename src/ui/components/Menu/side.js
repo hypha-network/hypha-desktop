@@ -41,7 +41,7 @@ export const SideMenu = () => {
           Peers
         </li>
         <li
-          className={page === 'bootstrap' ? css.active: ''}
+          className={page === 'bootstrap' ? css.active : ''}
           onClick={() => click('bootstrap')}
         >
           <GitCommit className={css.icon} size={17} />
