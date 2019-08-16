@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { FileText, Radio, Search } from 'react-feather'
+import { FileText, GitCommit, Radio, Search } from 'react-feather'
 
 import { PageContext } from '../Context/page'
 
@@ -39,6 +39,13 @@ export const SideMenu = () => {
         >
           <Radio className={css.icon} size={17} />
           Peers
+        </li>
+        <li
+          className={page === 'bootstrap' ? css.active: ''}
+          onClick={() => click('bootstrap')}
+        >
+          <GitCommit className={css.icon} size={17} />
+          Bootstrap
         </li>
       </div>
       <div className={css.version}>Version: 0.1.0</div>

@@ -7,7 +7,7 @@ import { ipfs } from '../../common/ipfs'
 import { HashContext } from '../Context/hash'
 import useInterval from '../Hooks/useInterval'
 
-import css from './style.css'
+import css from './hash.css'
 
 export const HashBar = () => {
   const { hash, setHash } = useContext(HashContext)
