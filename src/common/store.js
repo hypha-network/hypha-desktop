@@ -16,8 +16,4 @@ if (store.get('version') !== 5) {
   store.set('version', 5)
 }
 
-if (!store.get('page')) {
-  store.set('page', 'explore')
-}
-
 export default store
