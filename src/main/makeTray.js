@@ -12,7 +12,7 @@ export default (context) => {
   const items = [
     {
       label: `Hypha (${version})`,
-      click: context.launchUI
+      click: () => { context.launchUI() }
     },
     { type: 'separator' },
     {
