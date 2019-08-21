@@ -25,7 +25,7 @@ npm build
 
 * [src](src): Electron and IPFS scripts are in this directory.
 
-* [ui](ui): All web UI components reside in this folder.
+* [ui](src/ui): All web UI components reside in this folder.
 
 ## Rough road map
 

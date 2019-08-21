@@ -6,7 +6,6 @@ import main from './main'
 fixPath()
 
 app.setAppUserModelId('io.hypha.desktop')
-app.on('will-finish-launching', () => {})
 
 if (app.dock) {
   app.dock.hide()
