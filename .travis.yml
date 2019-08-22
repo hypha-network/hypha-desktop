@@ -22,7 +22,7 @@ jobs:
         provider: releases
         api_key: $GH_TOKEN
         file_glob: true
-        file: dist/*
+        file: dist/Hypha-0.1.0.dmg
         overwrite: true
         skip_cleanup: true
         draft: true

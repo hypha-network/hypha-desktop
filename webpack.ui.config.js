@@ -3,8 +3,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const WebpackBuildNotifierPlugin = require('webpack-build-notifier')
 
-module.exports = {
-  mode: 'development',
+const config = {
+  mode: 'production',
 
   context: path.join(__dirname, 'src', 'ui'),
 
@@ -59,15 +59,26 @@ module.exports = {
         from: './static/global.css',
         to: 'global.css'
       },
-    ]),
-    new WebpackBuildNotifierPlugin({
-      title: 'Hypha Build'
-    })
-  ],
+    ])
+  ]
+}
 
-  watch: true,
-
-  watchOptions: {
-    aggregateTimeout: 500
+module.exports = env => {
+  if (!env || env === 'development') {
+    return {
+      ...config,
+      mode: 'development',
+      plugins: [
+        ...config.plugins,
+        new WebpackBuildNotifierPlugin({
+          title: 'Hypha Build'
+        })
+      ],
+      watch: true,
+      watchOptions: {
+        aggregateTimeout: 500
+      }
+    }
   }
+  return config
 }
