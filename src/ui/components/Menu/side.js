@@ -48,7 +48,7 @@ export const SideMenu = () => {
           Bootstrap
         </li>
       </div>
-      <div className={css.version}>Version: 0.1.0</div>
+      <div className={css.version}>Version: 0.1.1</div>
     </section>
   )
 }
