@@ -66,7 +66,7 @@ export const Explore = () => {
 
       {!hash && <Welcome />}
 
-      {loading && (
+      {hash && loading && (
         <Spinner
           containerClass={css.spinner}
           size={30}

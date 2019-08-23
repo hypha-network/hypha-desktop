@@ -1,5 +1,5 @@
 import isIpfs from 'is-ipfs'
-import { trim } from 'lodash'
+import trim from 'lodash/trim'
 import React, { useContext, useState } from 'react'
 import { Box, Radio } from 'react-feather'
 
@@ -18,7 +18,8 @@ export const HashBar = () => {
 
   const submit = event => {
     event.preventDefault()
-    setHash(isIpfs.cid(lastHash) ? trim(lastHash) : '')
+    const currentHash = trim(lastHash)
+    setHash(isIpfs.cid(currentHash) ? currentHash : '')
     setLastHash('')
   }
 

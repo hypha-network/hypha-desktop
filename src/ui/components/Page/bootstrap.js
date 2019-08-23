@@ -1,4 +1,4 @@
-import { trim } from 'lodash'
+import trim from 'lodash/trim'
 import React, { useEffect, useState } from 'react'
 import { GitCommit, Trash2, User } from 'react-feather'
 

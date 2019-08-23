@@ -1,0 +1,27 @@
+appId: io.hypha.desktop
+
+mac:
+  darkModeSupport: false
+
+dmg:
+  window:
+    width: 620
+    height: 400
+
+  contents:
+    - x: 140
+      y: 220
+      type: file
+
+    - x: 400
+      y: 220
+      type: link
+      path: /Applications
+
+win:
+  target: nsis
+
+nsis:
+  oneClick: true
+  warningsAsErrors: false
+  perMachine: false
