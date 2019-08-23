@@ -21,7 +21,5 @@ dmg:
 win:
   target: nsis
 
-nsis:
-  oneClick: true
-  warningsAsErrors: false
-  perMachine: false
+linux:
+  target: AppImage
