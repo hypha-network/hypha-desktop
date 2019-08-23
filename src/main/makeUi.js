@@ -50,8 +50,6 @@ export default async context => {
   context.webui = window
 
   context.launchUI = () => {
-    console.log('[UI] starting')
-    window.loadURL(uiPath)
     window.show()
     window.focus()
 
@@ -59,15 +57,6 @@ export default async context => {
       app.dock.show()
     }
   }
-
-  ipcMain.on('ipfsd', async () => {
-    const daemon = await context.getDaemon()
-
-    if (daemon && daemon.apiAddr !== apiAddress) {
-      apiAddress = daemon.apiAddr
-      window.loadURL(uiPath)
-    }
-  })
 
   app.on('before-quit', () => {
     window.removeAllListeners('close')
@@ -79,10 +68,16 @@ export default async context => {
   })
 
   return new Promise(resolve => {
+    window.loadURL(uiPath)
     window.once('ready-to-show', () => {
       console.log('[UI] started')
+      window.show()
+      window.focus()
+
+      if (app.dock) {
+        app.dock.show()
+      }
       resolve()
     })
-    window.loadURL(uiPath)
   })
 }

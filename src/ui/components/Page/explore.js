@@ -5,7 +5,7 @@ import { bufferToDataURI } from '../../common/file'
 import { ipfs } from '../../common/ipfs'
 import { PinButton } from '../Button/pin'
 import { HashContext } from '../Context/hash'
-import { HashBar } from '../HashBar'
+import { HashBar } from '../Bar/hash'
 import { Welcome } from '../Welcome'
 import { Spinner } from '../Spinner'
 
@@ -66,7 +66,7 @@ export const Explore = () => {
 
       {!hash && <Welcome />}
 
-      {loading && (
+      {hash && loading && (
         <Spinner
           containerClass={css.spinner}
           size={30}
