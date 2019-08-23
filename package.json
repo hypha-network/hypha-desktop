@@ -5,7 +5,7 @@
   "description": "Hypha Desktop Application",
   "main": "out/index.js",
   "scripts": {
-    "build": "npm run build:module; npm run build:copy; npm run build:ui; npm run build:electron",
+    "build:pre": "npm run build:module; npm run build:copy; npm run build:ui",
     "build:copy": "babel src --out-dir out --copy-files; shx rm -rf out/ui",
     "build:module": "npm install .",
     "build:ui": "webpack --env production --colors --config webpack.ui.config.js",
