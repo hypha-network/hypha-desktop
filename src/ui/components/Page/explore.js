@@ -1,7 +1,7 @@
 import * as cheerio from 'cheerio'
 import React, { useContext, useEffect, useState } from 'react'
 
-import { bufferToDataURI, loadHTML } from '../../common/file'
+import { bufferToDataURI, loadArticle } from '../../common/file'
 import { ipfs } from '../../common/ipfs'
 import { PinButton } from '../Button/pin'
 import { HashContext } from '../Context/hash'
@@ -10,6 +10,7 @@ import { Welcome } from '../Welcome'
 import { Spinner } from '../Spinner'
 
 import css from './explore.css'
+import { Articles } from './articles'
 
 export const Explore = () => {
   const { hash } = useContext(HashContext)
@@ -22,9 +23,9 @@ export const Explore = () => {
     if (hash) {
       setHtml('')
       setLoading(true)
-      loadHTML(hash).then($ => {
-        if ($) {
-          setHtml($('body').html())
+      loadArticle(hash).then(article => {
+        if (article.html) {
+          setHtml(article.html)
           setLoading(false)
         }
       })

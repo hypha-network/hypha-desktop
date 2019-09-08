@@ -7,7 +7,7 @@ export const bufferToDataURI = buffer => {
   return `data:${mime};base64,${buffer.toString('base64')}`
 }
 
-export const loadHTML = async hash => {
+export const loadArticle = async hash => {
   try {
     const files = await ipfs.get(hash)
 
@@ -20,8 +20,6 @@ export const loadHTML = async hash => {
       }
       return sum
     }, {})
-
-    console.log({ files, data })
 
     // Parse entry html
     if (!data['index.html']) {
@@ -37,7 +35,15 @@ export const loadHTML = async hash => {
       const src = element.attr('src')
       element.attr('src', bufferToDataURI(data[src]))
     })
-    return $
+
+    // get info and parse into article
+    return {
+      html: $('body').html(),
+      title: $('title').text(),
+      description: $("meta[name='description']").attr('content'),
+      author: $("meta[property='article:author']").attr('content'),
+      timestamp: $("time[itemprop='datePublished']").attr('datetime')
+    }
   } catch (error) {
     console.error(error)
     return undefined

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import { ipfs } from '../../common/ipfs'
-import { loadHTML } from '../../common/file'
+import { loadArticle } from '../../common/file'
 import { Spinner } from '../Spinner'
 
 import css from './articles.css'
@@ -20,20 +20,8 @@ export const Articles = () => {
               const { hash } = data
 
               // Parse entry html
-              const $ = await loadHTML(hash)
-              return $
-                ? {
-                    html: $,
-                    title: $('title').text(),
-                    description: $("meta[name='description']").attr('content'),
-                    author: $("meta[property='article:author']").attr(
-                      'content'
-                    ),
-                    timestamp: $("time[itemprop='datePublished']").attr(
-                      'datetime'
-                    )
-                  }
-                : null
+              const article = await loadArticle(hash)
+              return article
             } catch (error) {
               console.error(error)
               return null
@@ -57,7 +45,7 @@ export const Articles = () => {
           text="Articles loading ..."
         />
       )}
-      {!loading && <div> {JSON.stringify(articles)}</div>}
+      {!loading && <div> {JSON.stringify(articles[0]['title'])}</div>}
     </section>
   )
 }

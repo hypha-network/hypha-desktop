@@ -73,6 +73,7 @@
     "file-type": "^12.0.1",
     "fix-path": "^2.1.0",
     "go-ipfs-dep": "0.4.21",
+    "graphql-transport-electron": "^1.0.1",
     "ipfs-http-client": "^33.1.0",
     "ipfsd-ctl": "^0.44.1",
     "is-ipfs": "^0.6.1",
