@@ -3,7 +3,7 @@ import trim from 'lodash/trim'
 import React, { useContext, useState } from 'react'
 import { Box, Radio } from 'react-feather'
 
-import { ipfs } from '../../common/ipfs'
+import { ipfs } from '../../../common/ipfs'
 import { HashContext } from '../Context/hash'
 import useInterval from '../Hooks/useInterval'
 

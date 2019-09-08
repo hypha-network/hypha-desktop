@@ -1,11 +1,7 @@
-import fileType from 'file-type'
-import { ipfs } from '../../common/ipfs'
+import ipfsClient from 'ipfs-http-client'
 import * as cheerio from 'cheerio'
 
-export const bufferToDataURI = buffer => {
-  const { ext, mime } = fileType(buffer)
-  return `data:${mime};base64,${buffer.toString('base64')}`
-}
+export const ipfs = ipfsClient('localhost', '5001', { protocol: 'http' })
 
 export const loadArticle = async hash => {
   try {
@@ -30,6 +26,7 @@ export const loadArticle = async hash => {
       decodeEntities: false,
       xmlMode: true
     })
+
     $('img').each((index, image) => {
       const element = $(image)
       const src = element.attr('src')
@@ -37,15 +34,17 @@ export const loadArticle = async hash => {
     })
 
     // get info and parse into article
-    return {
-      html: $('body').html(),
-      title: $('title').text(),
-      description: $("meta[name='description']").attr('content'),
-      author: $("meta[property='article:author']").attr('content'),
-      timestamp: $("time[itemprop='datePublished']").attr('datetime')
-    }
+    return $.root().html()
   } catch (error) {
     console.error(error)
     return undefined
   }
 }
+
+// {
+//   html: $('body').html(),
+//   title: $('title').text(),
+//   description: $("meta[name='description']").attr('content'),
+//   author: $("meta[property='article:author']").attr('content'),
+//   timestamp: $("time[itemprop='datePublished']").attr('datetime')
+// }

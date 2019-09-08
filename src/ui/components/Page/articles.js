@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { ipfs } from '../../common/ipfs'
+import { ipfs } from '../../../common/ipfs'
 import { loadArticle } from '../../common/file'
 import { Spinner } from '../Spinner'
 

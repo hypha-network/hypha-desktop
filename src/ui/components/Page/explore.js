@@ -2,7 +2,7 @@ import * as cheerio from 'cheerio'
 import React, { useContext, useEffect, useState } from 'react'
 
 import { bufferToDataURI, loadArticle } from '../../common/file'
-import { ipfs } from '../../common/ipfs'
+import { ipfs } from '../../../common/ipfs'
 import { PinButton } from '../Button/pin'
 import { HashContext } from '../Context/hash'
 import { HashBar } from '../Bar/hash'

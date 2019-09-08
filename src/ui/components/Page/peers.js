@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Radio, User } from 'react-feather'
 
-import { ipfs } from '../../common/ipfs'
+import { ipfs } from '../../../common/ipfs'
 import useInterval from '../Hooks/useInterval'
 import { Spinner } from '../Spinner'
 

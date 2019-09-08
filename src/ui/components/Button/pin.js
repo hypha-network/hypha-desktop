@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import React, { useContext, useState } from 'react'
 import { CheckCircle, Download, Loader } from 'react-feather'
 
-import { ipfs } from '../../common/ipfs'
+import { ipfs } from '../../../common/ipfs'
 import { HashContext } from '../Context/hash'
 
 import css from './pin.css'

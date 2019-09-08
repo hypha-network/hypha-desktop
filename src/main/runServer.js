@@ -23,14 +23,13 @@ const remoteSchema = await introspectSchema(remoteLink)
 // Make remote executable schema
 const remoteExecutableSchema = makeRemoteExecutableSchema({
   schema: remoteSchema,
-  remoteHttpLink
+  remoteLink
 })
 
 const schema = mergeSchemas({
   schemas: [remoteExecutableSchema, localSchema]
 })
 
-// NOTE: This also works with any other apollo link (e.g. HttpLink from apollo-link).
 const link = createSchemaLink({ schema })
 createIpcExecutor({ link, ipc: ipcMain })
 
