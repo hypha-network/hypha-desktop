@@ -5,11 +5,10 @@ import IPFSFactory from 'ipfsd-ctl'
 import findExecutable from 'ipfsd-ctl/src/utils/find-ipfs-executable'
 import { join } from 'path'
 
-import store from './store'
-
 const readConfig = path => fs.readJsonSync(path)
 
-const saveConfig = (path, config) => fs.writeJsonSync(path, config, { spaces: 2 })
+const saveConfig = (path, config) =>
+  fs.writeJsonSync(path, config, { spaces: 2 })
 
 const resetDaemon = async (addr, path) => {
   if (!fs.existsSync(join(path, 'config'))) {
@@ -67,7 +66,7 @@ const initDaemon = async ({ type, path, keysize }) => {
   return daemon
 }
 
-export default async (options) => {
+export default async options => {
   const daemon = await initDaemon(options)
 
   if (!daemon.started) {
