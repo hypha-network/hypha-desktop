@@ -10,7 +10,8 @@ import {
 import { HttpLink } from 'apollo-link-http'
 import fetch from 'node-fetch'
 
-// import schema from './my-graphql-schema'
+// import localSchema from './schema'
+const localSchema = {}
 
 const remoteUrl = 'https://server-test.matters.news/graphql'
 const remoteLink = new HttpLink({
@@ -25,7 +26,9 @@ const remoteExecutableSchema = makeRemoteExecutableSchema({
   remoteHttpLink
 })
 
-const schema = {}
+const schema = mergeSchemas({
+  schemas: [remoteExecutableSchema, localSchema]
+})
 
 // NOTE: This also works with any other apollo link (e.g. HttpLink from apollo-link).
 const link = createSchemaLink({ schema })
