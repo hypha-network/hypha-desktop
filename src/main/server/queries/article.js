@@ -8,6 +8,7 @@ export default {
       return { content }
     }
   },
+  // get meta data from html for now
   Article: {
     title: ({ content }) =>
       cheerio

@@ -3,7 +3,6 @@ import user from './user'
 
 const Root = /* GraphQL */ `
   type Query
-  type Mutation
 
   type PageInfo {
     startCursor: String
@@ -24,7 +23,6 @@ const Root = /* GraphQL */ `
 
   schema {
     query: Query
-    mutation: Mutation
   }
 `
 

@@ -1,7 +1,13 @@
+import fileType from 'file-type'
 import ipfsClient from 'ipfs-http-client'
 import * as cheerio from 'cheerio'
 
 export const ipfs = ipfsClient('localhost', '5001', { protocol: 'http' })
+
+export const bufferToDataURI = buffer => {
+  const { ext, mime } = fileType(buffer)
+  return `data:${mime};base64,${buffer.toString('base64')}`
+}
 
 export const loadArticle = async hash => {
   try {

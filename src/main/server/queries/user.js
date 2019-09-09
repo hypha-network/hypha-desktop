@@ -20,7 +20,7 @@ export default {
             return null
           }
         })
-      )).filter(edge => edge)
+      )).filter(edge => edge.node.content)
 
       const totalCount = subscriptionEdges.length
       return {
@@ -37,12 +37,6 @@ export default {
           edges: subscriptionEdges
         }
       }
-    }
-  },
-  User: {
-    subscriptions: root => {
-      console.log({ root })
-      return root
     }
   }
 }

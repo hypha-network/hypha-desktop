@@ -9,8 +9,6 @@ import { SideMenu } from '../Menu/side'
 
 import css from './style.css'
 
-console.log({ client })
-
 export const App = () => (
   <ApolloProvider client={client}>
     <PageProvider>
