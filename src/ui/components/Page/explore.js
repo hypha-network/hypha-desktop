@@ -1,8 +1,5 @@
-import * as cheerio from 'cheerio'
 import React, { useContext, useEffect, useState } from 'react'
 
-import { bufferToDataURI, loadArticle } from '../../common/file'
-import { ipfs } from '../../../common/ipfs'
 import { PinButton } from '../Button/pin'
 import { HashContext } from '../Context/hash'
 import { HashBar } from '../Bar/hash'
@@ -10,25 +7,14 @@ import { Welcome } from '../Welcome'
 import { Spinner } from '../Spinner'
 
 import css from './explore.css'
-import { Articles } from './articles'
 
 export const Explore = () => {
   const { hash } = useContext(HashContext)
-
   const [loading, setLoading] = useState(false)
-
-  const [html, setHtml] = useState('')
 
   useEffect(() => {
     if (hash) {
-      setHtml('')
       setLoading(true)
-      loadArticle(hash).then(article => {
-        if (article.html) {
-          setHtml(article.html)
-          setLoading(false)
-        }
-      })
     }
   }, [hash])
 
@@ -46,16 +32,22 @@ export const Explore = () => {
         />
       )}
 
-      {html && (
-        <>
-          <div className={css.htmlContainer}>
-            <div
-              className={css.html}
-              dangerouslySetInnerHTML={{ __html: html }}
-            />
-          </div>
-          <PinButton />
-        </>
+      {hash && (
+        <main className={css.htmlContainer}>
+          <iframe
+            src={`http://localhost:8080/ipfs/${hash}`}
+            style={
+              loading
+                ? { width: 0, height: 0, border: 0 }
+                : {
+                    width: '100%',
+                    height: '-webkit-fill-available',
+                    border: 0
+                  }
+            }
+            onLoad={() => setLoading(false)}
+          />
+        </main>
       )}
     </section>
   )

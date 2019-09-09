@@ -6,6 +6,7 @@ import { Box, Radio } from 'react-feather'
 import { ipfs } from '../../../common/ipfs'
 import { HashContext } from '../Context/hash'
 import useInterval from '../Hooks/useInterval'
+import { PinButton } from '../Button/pin'
 
 import css from './hash.css'
 
@@ -37,13 +38,20 @@ export const HashBar = () => {
   return (
     <div className={css.container}>
       <form className={css.form} onSubmit={submit}>
-        <input
-          type="search"
-          className={css.hash}
-          placeholder="Enter IPFS Hash"
-          value={lastHash}
-          onChange={event => setLastHash(event.target.value || '')}
-        />
+        <span
+          style={{
+            display: 'flex'
+          }}
+        >
+          <input
+            type="search"
+            className={css.hash}
+            placeholder="Enter IPFS Hash"
+            value={lastHash}
+            onChange={event => setLastHash(event.target.value || '')}
+          />
+          <PinButton />
+        </span>
         <span className={css.info}>
           <Box className={css.iconHash} size={15} />
           {hash || 'Hash has not been set'}

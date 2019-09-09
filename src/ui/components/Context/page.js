@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from 'react'
 
 export const PageContext = createContext({
   page: 'explore',
-  setHash: hash => {}
+  setPage: hash => {}
 })
 
 export const PageConsumer = PageContext.Consumer

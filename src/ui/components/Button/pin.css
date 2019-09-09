@@ -1,15 +1,11 @@
 .button {
-  position: absolute;
-  top: 8.3rem;
-  right: 1.5rem;
-
   display: flex;
   align-items: center;
   justify-content: center;
 
   background-color: rgba(239, 138, 115, 0.8);
   border-radius: 0.8rem;
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
   font-size: 0.9rem;
   font-weight: bold;
@@ -17,7 +13,7 @@
 }
 
 .pin {
-  color: #FFFFFF;
+  color: #ffffff;
   margin: 0 0.3rem 0 0;
 }
 

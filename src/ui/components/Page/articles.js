@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import { Spinner } from '../Spinner'
 import css from './articles.css'
+import { HashContext } from '../Context/hash'
+import { PageContext } from '../Context/page'
 
 export const Articles = () => {
   const SUBSCRIPTIONS = gql`
@@ -15,12 +17,16 @@ export const Articles = () => {
               title
               author
               createdAt
+              hash
             }
           }
         }
       }
     }
   `
+  const { setPage } = useContext(PageContext)
+  const { setHash } = useContext(HashContext)
+
   const { loading, error, data } = useQuery(SUBSCRIPTIONS)
 
   if (loading) {
@@ -39,7 +45,7 @@ export const Articles = () => {
 
   return (
     <section className={css.section} style={{ paddingTop: 20 }}>
-      {data.viewer.subscriptions.edges.map(({ node }) => {
+      {data.viewer.subscriptions.edges.map(({ node }, index) => {
         const timestamp = new Date(node.createdAt)
         const createdAt = isNaN(timestamp.getTime())
           ? '-'
@@ -49,6 +55,7 @@ export const Articles = () => {
               day: 'numeric'
             })
 
+        const { author, title, hash } = node
         return (
           <div
             style={{
@@ -57,14 +64,25 @@ export const Articles = () => {
               marginTop: 20,
               paddingBottom: 5,
               display: 'grid',
-              'grid-gap': '2%',
-              'grid-template-columns': '50% 30% 15%',
-              'border-bottom': '1px solid rgba(0,0,0,.1)'
+              gridGap: '2%',
+              gridTemplateColumns: '50% 30% 15%',
+              borderBottom: '1px solid rgba(0,0,0,.1)'
             }}
+            key={index}
           >
-            <span>{node.title}</span>
+            <span
+              onClick={() => {
+                setPage('explore')
+                setHash(hash)
+              }}
+              style={{
+                cursor: 'pointer'
+              }}
+            >
+              {title}
+            </span>
 
-            <span>{node.author}</span>
+            <span>{author}</span>
             <span>{createdAt}</span>
           </div>
         )
