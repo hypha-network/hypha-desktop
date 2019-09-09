@@ -9,13 +9,13 @@ export default /* GraphQL */ `
 
   type Article {
     "Author of this article."
-    author: String
+    author: String!
 
     "Article title."
-    title: String
+    title: String!
 
     "A short summary for this article."
-    summary: String
+    summary: String!
 
     "IPFS hash of this article."
     hash: String!

@@ -5,7 +5,7 @@ export default {
   Query: {
     article: async (root, { input: { hash } }) => {
       const content = await loadArticle(hash)
-      return { content }
+      return { content, hash }
     }
   },
   // get meta data from html for now
@@ -13,18 +13,18 @@ export default {
     title: ({ content }) =>
       cheerio
         .load(content)('title')
-        .text(),
+        .text() || '-',
     summary: ({ content }) =>
       cheerio
         .load(content)("meta[name='description']")
-        .attr('content'),
+        .attr('content') || '-',
     author: ({ content }) =>
       cheerio
         .load(content)("meta[property='article:author']")
-        .attr('content'),
+        .attr('content') || '-',
     createdAt: ({ content }) =>
       cheerio
         .load(content)("time[itemprop='datePublished']")
-        .attr('datetime')
+        .attr('datetime') || '-'
   }
 }

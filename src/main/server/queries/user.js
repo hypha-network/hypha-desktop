@@ -14,7 +14,7 @@ export default {
 
             // Parse entry html
             const content = await loadArticle(hash)
-            return { cursor: hash, node: { content } }
+            return { cursor: hash, node: { content, hash } }
           } catch (error) {
             console.error(error)
             return null
@@ -23,6 +23,7 @@ export default {
       )).filter(edge => edge.node.content)
 
       const totalCount = subscriptionEdges.length
+
       return {
         subscriptions: {
           totalCount,
