@@ -23,7 +23,8 @@ const config = {
   webPreferences: {
     allowRunningInsecureContent: false,
     preload: join(__dirname, 'preloadUi.js'),
-    webSecurity: false
+    nodeIntegration: true,
+    webSecurity: false // TODO
   }
 }
 

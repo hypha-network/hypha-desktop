@@ -9,7 +9,7 @@ import {
 import { HttpLink } from 'apollo-link-http'
 import fetch from 'node-fetch'
 
-import localSchema from './localSchema'
+import localSchema from './schema'
 
 export default async context => {
   const remoteUrl = 'https://server-test.matters.news/graphql'
@@ -30,5 +30,5 @@ export default async context => {
 
   const link = createSchemaLink({ schema })
   createIpcExecutor({ link, ipc: ipcMain })
-  console.log('[NODE SERVER] started', { context })
+  console.log('[SERVER] started')
 }
