@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState, useRef } from 'react'
 
-import { PinButton } from '../Button/pin'
+import { getLocalHttp } from '../../../common/ipfs'
 import { HashContext } from '../Context/hash'
 import { HashBar } from '../Bar/hash'
 import { Welcome } from '../Welcome'
@@ -17,6 +17,8 @@ export const Explore = () => {
       setLoading(true)
     }
   }, [hash])
+
+  const iframeEl = useRef(null)
 
   return (
     <section className={css.section}>
@@ -35,7 +37,8 @@ export const Explore = () => {
       {hash && (
         <main className={css.htmlContainer}>
           <iframe
-            src={`http://localhost:8080/ipfs/${hash}`}
+            ref={iframeEl}
+            src={getLocalHttp(hash)}
             style={
               loading
                 ? { width: 0, height: 0, border: 0 }
@@ -45,7 +48,9 @@ export const Explore = () => {
                     border: 0
                   }
             }
-            onLoad={() => setLoading(false)}
+            onLoad={() => {
+              setLoading(false)
+            }}
           />
         </main>
       )}

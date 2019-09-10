@@ -84,6 +84,7 @@
     "ipfs-http-client": "^33.1.0",
     "ipfsd-ctl": "^0.44.1",
     "is-ipfs": "^0.6.1",
+    "isomorphic-fetch": "^2.2.1",
     "iterall": "^1.2.2",
     "lodash": "^4.17.15",
     "node-fetch": "^2.6.0",

@@ -8,18 +8,20 @@ export default {
       // resolve subcription for local user
       // use pinset as subscriptions for now
       const subscriptionEdges = (await Promise.all(
-        pinset.map(async data => {
-          try {
-            const { hash } = data
+        pinset
+          .filter(({ type }) => type !== 'indirect')
+          .map(async data => {
+            try {
+              const { hash } = data
 
-            // Parse entry html
-            const content = await loadArticle(hash)
-            return { cursor: hash, node: { content, hash } }
-          } catch (error) {
-            console.error(error)
-            return null
-          }
-        })
+              // Parse entry html
+              const content = await loadArticle(hash)
+              return { cursor: hash, node: { content, hash } }
+            } catch (error) {
+              console.error(error)
+              return null
+            }
+          })
       )).filter(edge => edge.node.content)
 
       const totalCount = subscriptionEdges.length

@@ -32,7 +32,7 @@ export const PinButton = () => {
   const pin = () => {
     if (hash && isUnpin) {
       setPinState('pinning')
-      ipfs.pin.add(hash, (err, res) => {
+      ipfs.pin.add(hash, { recursive: false }, (err, res) => {
         if (err) {
           console.log(err)
         }
