@@ -1,6 +1,6 @@
-const CopyPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path')
 const WebpackBuildNotifierPlugin = require('webpack-build-notifier')
 
 const config = {
@@ -16,7 +16,8 @@ const config = {
   },
 
   resolve: {
-    extensions: ['.js', 'jsx']
+    // .mjs needed for https://github.com/graphql/graphql-js/issues/1272
+    extensions: ['.js', 'jsx', '.mjs']
   },
 
   module: {
@@ -44,6 +45,12 @@ const config = {
       {
         test: /\.svg$/,
         use: ['@svgr/webpack']
+      },
+      {
+        // fixes https://github.com/graphql/graphql-js/issues/1272
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: 'javascript/auto'
       }
     ]
   },
@@ -58,9 +65,10 @@ const config = {
       {
         from: './static/global.css',
         to: 'global.css'
-      },
+      }
     ])
-  ]
+  ],
+  target: 'electron-renderer'
 }
 
 module.exports = env => {

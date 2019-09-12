@@ -1,9 +1,6 @@
-import * as cheerio from 'cheerio'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState, useRef } from 'react'
 
-import { bufferToDataURI } from '../../common/file'
-import { ipfs } from '../../common/ipfs'
-import { PinButton } from '../Button/pin'
+import { getLocalHttp } from '../../../common/ipfs'
 import { HashContext } from '../Context/hash'
 import { HashBar } from '../Bar/hash'
 import { Welcome } from '../Welcome'
@@ -13,52 +10,15 @@ import css from './explore.css'
 
 export const Explore = () => {
   const { hash } = useContext(HashContext)
-
   const [loading, setLoading] = useState(false)
-
-  const [html, setHtml] = useState('')
-
-  const get = hash => {
-    ipfs.get(hash, (err, files) => {
-      if (err) {
-        console.log(err)
-        return undefined
-      }
-
-      if (files && files.length > 0) {
-        // Filter data
-        const data = files.reduce((sum, file) => {
-          const { path, content } = file
-          const cleannedPath = path.replace(`${hash}/`, '')
-          if (cleannedPath && content) {
-            sum[`${cleannedPath}`] = content
-          }
-          return sum
-        }, {})
-
-        // Parse entry html
-        const $ = cheerio.load(data['index.html'].toString('utf8'), {
-          decodeEntities: false,
-          xmlMode: true
-        })
-        $('img').each((index, image) => {
-          const element = $(image)
-          const src = element.attr('src')
-          element.attr('src', bufferToDataURI(data[src]))
-        })
-        setHtml($('body').html())
-      }
-      setLoading(false)
-    })
-  }
 
   useEffect(() => {
     if (hash) {
-      setHtml('')
       setLoading(true)
-      get(hash)
     }
   }, [hash])
+
+  const iframeEl = useRef(null)
 
   return (
     <section className={css.section}>
@@ -74,16 +34,25 @@ export const Explore = () => {
         />
       )}
 
-      {html && (
-        <>
-          <div className={css.htmlContainer}>
-            <div
-              className={css.html}
-              dangerouslySetInnerHTML={{ __html: html }}
-            />
-          </div>
-          <PinButton />
-        </>
+      {hash && (
+        <main className={css.htmlContainer}>
+          <iframe
+            ref={iframeEl}
+            src={getLocalHttp(hash)}
+            style={
+              loading
+                ? { width: 0, height: 0, border: 0 }
+                : {
+                    width: '100%',
+                    height: '-webkit-fill-available',
+                    border: 0
+                  }
+            }
+            onLoad={() => {
+              setLoading(false)
+            }}
+          />
+        </main>
       )}
     </section>
   )

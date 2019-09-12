@@ -14,7 +14,7 @@
     "dev:electron": "wait-on assets/ui/index.js; cross-env NODE_ENV=development electron -r @babel/register src/index.js",
     "dev:ui": "webpack --env development --colors --config webpack.ui.config.js",
     "format:ui": "prettier --write \"src/ui/**/*.{js,json}\"",
-    "start:dev": "npm run clean:ui; concurrently \"npm:dev:ui\" \"npm:dev:electron\""
+    "start:dev": "NODE_ENV=development npm run clean:ui; concurrently \"npm:dev:ui\" \"npm:dev:electron\""
   },
   "husky": {
     "hooks": {
@@ -66,17 +66,28 @@
     "webpack-cli": "^3.3.6"
   },
   "dependencies": {
+    "@apollo/react-hooks": "^3.1.0",
     "@babel/runtime": "^7.5.4",
+    "apollo-cache-inmemory": "^1.6.3",
+    "apollo-client": "^2.6.4",
+    "apollo-link-http": "^1.5.16",
     "cheerio": "^1.0.0-rc.3",
     "classnames": "^2.2.6",
     "electron-store": "^4.0.0",
     "file-type": "^12.0.1",
     "fix-path": "^2.1.0",
     "go-ipfs-dep": "0.4.21",
+    "graphql": "^14.5.4",
+    "graphql-tag": "^2.10.1",
+    "graphql-tools": "^4.0.5",
+    "graphql-transport-electron": "^1.0.1",
     "ipfs-http-client": "^33.1.0",
     "ipfsd-ctl": "^0.44.1",
     "is-ipfs": "^0.6.1",
-    "lodash": "^4.17.14",
+    "isomorphic-fetch": "^2.2.1",
+    "iterall": "^1.2.2",
+    "lodash": "^4.17.15",
+    "node-fetch": "^2.6.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-feather": "^2.0.3"

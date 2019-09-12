@@ -2,7 +2,7 @@ import trim from 'lodash/trim'
 import React, { useEffect, useState } from 'react'
 import { GitCommit, Trash2, User } from 'react-feather'
 
-import { ipfs } from '../../common/ipfs'
+import { ipfs } from '../../../common/ipfs'
 import { Spinner } from '../Spinner'
 
 import css from './bootstrap.css'

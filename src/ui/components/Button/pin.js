@@ -1,14 +1,23 @@
 import classNames from 'classnames'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { CheckCircle, Download, Loader } from 'react-feather'
 
-import { ipfs } from '../../common/ipfs'
+import { ipfs } from '../../../common/ipfs'
 import { HashContext } from '../Context/hash'
 
 import css from './pin.css'
 
 export const PinButton = () => {
   const { hash, setHash } = useContext(HashContext)
+
+  useEffect(() => {
+    ipfs.pin.ls().then(pinset => {
+      if (pinset.map(({ hash }) => hash).includes(hash)) {
+        setPinState('pinned')
+      }
+    })
+    return setPinState('unpin')
+  }, [hash])
 
   const [pinState, setPinState] = useState('unpin')
 
@@ -23,7 +32,7 @@ export const PinButton = () => {
   const pin = () => {
     if (hash && isUnpin) {
       setPinState('pinning')
-      ipfs.pin.add(hash, (err, res) => {
+      ipfs.pin.add(hash, { recursive: false }, (err, res) => {
         if (err) {
           console.log(err)
         }
