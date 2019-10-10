@@ -1,4 +1,3 @@
-import electron from 'electron'
 import Store from 'electron-store'
 
 const config = {

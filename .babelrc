@@ -1,9 +1,14 @@
 {
   "presets": [
-    "@babel/preset-env",
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "electron": "5.0.6"
+        }
+      }
+    ],
     "@babel/preset-react"
   ],
-  "plugins": [
-    "@babel/plugin-transform-runtime"
-  ]
+  "plugins": ["@babel/plugin-transform-runtime"]
 }

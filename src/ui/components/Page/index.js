@@ -4,7 +4,7 @@ import { PageContext } from '../Context/page'
 import { Articles } from './articles'
 import { Bootstrap } from './bootstrap'
 import { Explore } from './explore'
-import { Peers } from './peers'
+import { Peers } from './Peers'
 
 export const Page = () => {
   const { page } = useContext(PageContext)
