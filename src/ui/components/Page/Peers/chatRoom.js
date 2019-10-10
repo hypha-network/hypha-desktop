@@ -1,9 +1,30 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import multiaddr from 'multiaddr'
 import PeerInfo from 'peer-info'
-
+import PeerId from 'peer-id'
+import process from 'process'
 import store from '../../../../common/store'
 import { P2PNode } from './p2p'
+
+function pingRemotePeer(localPeer, remoteAddress) {
+  if (!remoteAddress) {
+    return console.log('no remote peer address given, skipping ping')
+  }
+  const remoteAddr = multiaddr(remoteAddress)
+
+  // Convert the multiaddress into a PeerInfo object
+  const peerId = PeerId.createFromB58String(remoteAddr.getPeerId())
+  const remotePeerInfo = new PeerInfo(peerId)
+  remotePeerInfo.multiaddrs.add(remoteAddr)
+
+  console.log('pinging remote peer at ', remoteAddr.toString())
+  localPeer.ping(remotePeerInfo, (err, time) => {
+    if (err) {
+      return console.error('error pinging: ', err)
+    }
+    console.log(`pinged ${remoteAddr.toString()} in ${time}ms`)
+  })
+}
 
 function handleStart(peer) {
   // get the list of addresses for our peer now that it's started.
@@ -12,6 +33,7 @@ function handleStart(peer) {
   // where `assignedPort` is randomly chosen by the operating system
   // and `generatedPeerId` is generated in the `createPeer` function above.
   const addresses = peer.peerInfo.multiaddrs.toArray()
+  // pingRemotePeer(peer)
   console.log('peer started. listening on addresses:')
   addresses.forEach(addr => console.log(addr.toString()))
 }
@@ -63,9 +85,15 @@ const createPeer = async () => {
 }
 
 export const ChatRoom = () => {
+  const [peerAddr, setPeerAddr] = useState('')
+
   useEffect(() => {
-    createPeer()
+    createPeer().then(peer => pingRemotePeer(peer, peerAddr))
   })
 
-  return <input />
+  return (
+    <form>
+      <input onChange={e => setPeerAddr(e.target.value)} />
+    </form>
+  )
 }
