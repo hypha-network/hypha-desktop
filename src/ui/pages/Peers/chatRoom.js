@@ -27,14 +27,18 @@ export const ChatRoom = () => {
       })
 
       ipfsNode.libp2p.handle(protocalName, (protocol, connection) => {
-        console.log({ protocol, connection })
         pull(
           connection,
           pull.collect((err, data) => {
             if (err) {
               throw err
             }
-            setDialog(dialog => dialog.concat([JSON.parse(data.toString())]))
+
+            const message = JSON.parse(data.toString())
+            setDialog(dialog => dialog.concat([message]))
+
+            // temperally set repose target for now
+            setRemotePeerId(message.from)
           })
         )
       })
@@ -61,7 +65,7 @@ export const ChatRoom = () => {
         remotePeerInfo,
         protocalName,
         (err, connection) => {
-          pull(pull.values([message]), connection)
+          pull(pull.values([JSON.stringify(message)]), connection)
         }
       )
       setDialog(dialog => dialog.concat([message]))
@@ -70,8 +74,6 @@ export const ChatRoom = () => {
     }
     event.preventDefault()
   }
-
-  console.log(dialog)
 
   return (
     <section style={{ margin: 25 }}>
@@ -85,6 +87,7 @@ export const ChatRoom = () => {
       >
         <input
           placeholder="peer id"
+          value={remotePeerId}
           onChange={e => {
             setRemotePeerId(e.target.value)
           }}
@@ -104,7 +107,14 @@ export const ChatRoom = () => {
           }}
         />
       </form>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          width: '60%',
+          margin: 10
+        }}
+      >
         {dialog.map(({ content, from }, index) => (
           <span
             key={index}
@@ -121,7 +131,7 @@ export const ChatRoom = () => {
           onChange={e => {
             setMessageDraft(e.target.value)
           }}
-          style={{ margin: 10, width: '80%' }}
+          style={{ margin: 10, width: '60%' }}
         />
       </form>
     </section>
