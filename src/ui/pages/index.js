@@ -7,7 +7,6 @@ import { Explore } from './explore'
 import { Peers } from './Peers'
 
 export const Page = () => {
-  console.log({ PageContext })
   const { page } = useContext(PageContext)
 
   switch (page) {

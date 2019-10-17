@@ -1,53 +1,129 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import PeerId from 'peer-id'
-import { createPeer, createIPFS } from '../../../common/p2p'
+import pull from 'pull-stream'
+
+import { IpfsContext } from '../../components'
+
+const protocalName = '/chat/1.0.0'
 
 export const ChatRoom = () => {
-  const [remotePeerId, setRemotePeerId] = useState('')
-  const [remotePeerAddr, setRemotePeerAddr] = useState('')
-  const [peer, setPeer] = useState(null)
-  const [node, setNode] = useState(null)
+  const { ipfsNode } = useContext(IpfsContext)
 
-  // initialize
+  const [viewerId, setViewerId] = useState('')
+  const [remotePeerId, setRemotePeerId] = useState('')
+  const [remotePeerInfo, setRemotePeerInfo] = useState('')
+
+  const [messageDraft, setMessageDraft] = useState('')
+  const [dialog, setDialog] = useState([])
+
+  // get viewer id, assign protocal
   useEffect(() => {
-    createPeer().then(peer => setPeer(peer))
-    createIPFS().then(node => setNode(node))
-  }, [])
+    if (ipfsNode) {
+      ipfsNode.id().then(({ id }, err) => {
+        if (err) {
+          throw err
+        }
+        setViewerId(id)
+      })
+
+      ipfsNode.libp2p.handle(protocalName, (protocol, connection) => {
+        console.log({ protocol, connection })
+        pull(
+          connection,
+          pull.collect((err, data) => {
+            if (err) {
+              throw err
+            }
+            setDialog(dialog => dialog.concat([JSON.parse(data.toString())]))
+          })
+        )
+      })
+    }
+  })
 
   // get address from id
   useEffect(() => {
-    if (node && remotePeerId) {
-      // peer
-      //   .getAddrFromId(remotePeerId)
-      //   .then(address => setRemotePeerAddr(address))
+    if (ipfsNode && remotePeerId) {
       const peerId = PeerId.createFromB58String(remotePeerId)
-      node.libp2p.peerRouting
-        .findPeer(peerId)
-        .then((result, error) => console.log({ result, error }))
+      ipfsNode.libp2p.peerRouting.findPeer(peerId).then((peerInfo, err) => {
+        if (err) {
+          throw err
+        }
+        setRemotePeerInfo(peerInfo)
+      })
     }
   }, [remotePeerId])
 
-  // trigger pings
-  useEffect(() => {
-    if (peer && remotePeerAddr) {
-      peer.pingRemotePeer(remotePeerAddr)
+  const handleSubmit = event => {
+    if (ipfsNode && remotePeerInfo) {
+      const message = { content: messageDraft, from: viewerId }
+      ipfsNode.libp2p.dialProtocol(
+        remotePeerInfo,
+        protocalName,
+        (err, connection) => {
+          pull(pull.values([message]), connection)
+        }
+      )
+      setDialog(dialog => dialog.concat([message]))
+    } else {
+      console.error('connection not established', messageDraft)
     }
-  }, [remotePeerAddr])
+    event.preventDefault()
+  }
+
+  console.log(dialog)
 
   return (
-    <form style={{ margin: 20, display: 'flex', width: '100%' }}>
-      <input
-        placeholder="peer id"
-        onChange={e => {
-          setRemotePeerId(e.target.value)
+    <section style={{ margin: 25 }}>
+      <span style={{ margin: 10, fontSize: 12 }}>My id: {viewerId}</span>
+      <form
+        style={{
+          display: 'flex',
+          width: '100%',
+          alignItems: 'baseline'
         }}
-      />
-      <input
-        placeholder="peer address"
-        onChange={e => {
-          setRemotePeerAddr(e.target.value)
-        }}
-      />
-    </form>
+      >
+        <input
+          placeholder="peer id"
+          onChange={e => {
+            setRemotePeerId(e.target.value)
+          }}
+          style={{ margin: 10 }}
+        />
+        <div
+          style={{
+            backgroundColor: remotePeerId
+              ? remotePeerInfo
+                ? 'green'
+                : 'gray'
+              : 'white',
+            height: 10,
+            width: 10,
+            borderRadius: 10,
+            margin: 5
+          }}
+        />
+      </form>
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        {dialog.map(({ content, from }, index) => (
+          <span
+            key={index}
+            style={{ textAlign: from === viewerId ? 'left' : 'right' }}
+          >
+            {content}
+          </span>
+        ))}
+      </div>
+      <form onSubmit={handleSubmit}>
+        <input
+          placeholder="message"
+          value={messageDraft}
+          onChange={e => {
+            setMessageDraft(e.target.value)
+          }}
+          style={{ margin: 10, width: '80%' }}
+        />
+      </form>
+    </section>
   )
 }

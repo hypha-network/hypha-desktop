@@ -1,4 +1,3 @@
-import { HashProvider, HashContext } from './hash'
-import { PageProvider, PageContext } from './page'
-
-export { HashProvider, HashContext, PageProvider, PageContext }
+export { HashProvider, HashContext } from './hash'
+export { PageProvider, PageContext } from './page'
+export { IpfsProvider, IpfsContext } from './ipfs'
