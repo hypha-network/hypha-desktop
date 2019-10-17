@@ -82,6 +82,7 @@
     "graphql-tag": "^2.10.1",
     "graphql-tools": "^4.0.5",
     "graphql-transport-electron": "^1.0.1",
+    "ipfs": "^0.38.0",
     "ipfs-http-client": "^33.1.0",
     "ipfsd-ctl": "^0.44.1",
     "is-ipfs": "^0.6.1",

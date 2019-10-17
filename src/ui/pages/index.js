@@ -1,12 +1,13 @@
 import React, { useContext } from 'react'
 
-import { PageContext } from '../Context/page'
+import { PageContext } from '../components'
 import { Articles } from './articles'
 import { Bootstrap } from './bootstrap'
 import { Explore } from './explore'
 import { Peers } from './Peers'
 
 export const Page = () => {
+  console.log({ PageContext })
   const { page } = useContext(PageContext)
 
   switch (page) {
