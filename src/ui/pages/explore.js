@@ -1,10 +1,7 @@
 import React, { useContext, useEffect, useState, useRef } from 'react'
 
-import { getLocalHttp } from '../../../common/ipfs'
-import { HashContext } from '../Context/hash'
-import { HashBar } from '../Bar/hash'
-import { Welcome } from '../Welcome'
-import { Spinner } from '../Spinner'
+import { getLocalHttp } from '../../common/ipfs'
+import { Welcome, Spinner, HashBar, HashContext } from '../components'
 
 import css from './explore.css'
 

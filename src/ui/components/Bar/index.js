@@ -6,9 +6,9 @@ import { Box, Radio } from 'react-feather'
 import { ipfs } from '../../../common/ipfs'
 import { HashContext } from '../Context/hash'
 import useInterval from '../Hooks/useInterval'
-import { PinButton } from '../Button/pin'
+import { PinButton } from '../Button'
 
-import css from './hash.css'
+import css from './style.css'
 
 export const HashBar = () => {
   const { hash, setHash } = useContext(HashContext)

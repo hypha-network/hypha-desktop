@@ -2,10 +2,8 @@ import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-import { Spinner } from '../Spinner'
+import { Spinner, HashContext, PageContext } from '../components'
 import css from './articles.css'
-import { HashContext } from '../Context/hash'
-import { PageContext } from '../Context/page'
 
 export const Articles = () => {
   const SUBSCRIPTIONS = gql`

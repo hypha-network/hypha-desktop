@@ -5,7 +5,7 @@ import { CheckCircle, Download, Loader } from 'react-feather'
 import { ipfs } from '../../../common/ipfs'
 import { HashContext } from '../Context/hash'
 
-import css from './pin.css'
+import css from './style.css'
 
 export const PinButton = () => {
   const { hash, setHash } = useContext(HashContext)

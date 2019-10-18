@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { Radio, User } from 'react-feather'
 
 import { ipfs } from '../../../common/ipfs'
-import useInterval from '../Hooks/useInterval'
-import { Spinner } from '../Spinner'
+import useInterval from '../../components/Hooks/useInterval'
+import { Spinner } from '../../components/Loaders/Spinner'
 
-import css from './peers.css'
+import css from './index.css'
+import { ChatRoom } from './chatRoom'
 
 const PeersTable = ({ peers }) => {
   const rows = peers.map((peer, index) => (
@@ -84,6 +85,8 @@ export const Peers = () => {
         />
       )}
       {!loading && <PeersTable peers={peers} />}
+
+      <ChatRoom />
     </section>
   )
 }

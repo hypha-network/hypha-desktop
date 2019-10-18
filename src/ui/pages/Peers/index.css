@@ -9,7 +9,7 @@
   flex-direction: column;
 
   border-bottom: 1px solid rgba(239, 232, 227, 0.6);
-  color: #725B54;
+  color: #725b54;
   font-size: 0.9rem;
   width: 100%;
   padding: 2rem 0 1rem 2rem;
@@ -21,12 +21,12 @@
 }
 
 .idIcon {
-  color: #725B54;
+  color: #725b54;
   margin: 0 0.5rem 0 0;
 }
 
 .idText {
-  color: #D86143;
+  color: #d86143;
   margin: 0 0 0 0.3rem;
 }
 
@@ -37,12 +37,12 @@
 }
 
 .peersIcon {
-  color: #725B54;
+  color: #725b54;
   margin: 0 0.5rem 0 0;
 }
 
 .peersText {
-  color: #D86143;
+  color: #d86143;
   margin: 0 0 0 0.3rem;
 }
 
@@ -54,12 +54,12 @@
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-
+  height: 30%;
   padding: 2rem 1rem 1rem 2rem;
 }
 
 .head {
-  color: #725B54;
+  color: #725b54;
   font-size: 0.9rem;
   font-weight: bold;
   width: 100%;

@@ -3,7 +3,7 @@ import { FileText, GitCommit, Radio, Search } from 'react-feather'
 
 import { PageContext } from '../Context/page'
 
-import css from './side.css'
+import css from './style.css'
 
 export const SideMenu = () => {
   const { page, setPage } = useContext(PageContext)
