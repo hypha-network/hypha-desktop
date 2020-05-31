@@ -1,12 +1,12 @@
-import React, { useContext, useEffect, useState, useRef } from "react"
+import React, { useContext, useEffect, useState, useRef } from 'react'
 
-import { getLocalHttp } from "../../../common/ipfs"
-import { HashContext } from "../Context/hash"
-import { HashBar } from "../Bar/hash"
-import { Welcome } from "../Welcome"
-import { Spinner } from "../Spinner"
+import { getLocalHttp } from '../../../common/ipfs'
+import { HashContext } from '../Context/hash'
+import { HashBar } from '../Bar/hash'
+import { Welcome } from '../Welcome'
+import { Spinner } from '../Spinner'
 
-import css from "./explore.css"
+import css from './explore.css'
 
 export const Explore = () => {
   const { hash } = useContext(HashContext)
@@ -44,9 +44,9 @@ export const Explore = () => {
               loading
                 ? { width: 0, height: 0, border: 0 }
                 : {
-                    width: "100%",
-                    height: "-webkit-fill-available",
-                    border: 0,
+                    width: '100%',
+                    height: '-webkit-fill-available',
+                    border: 0
                   }
             }
             onLoad={() => {

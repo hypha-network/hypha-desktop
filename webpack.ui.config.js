@@ -8,7 +8,7 @@ const config = {
 
   context: path.join(__dirname, "src", "ui"),
 
-  entry: ["./index.js"],
+  entry: ["./index.tsx"],
 
   output: {
     path: path.join(__dirname, "assets", "ui"),
@@ -17,7 +17,7 @@ const config = {
 
   resolve: {
     // .mjs needed for https://github.com/graphql/graphql-js/issues/1272
-    extensions: [".js", "jsx", ".mjs"],
+    extensions: [".ts", ".tsx", ".js", "jsx", ".mjs"],
   },
 
   module: {
@@ -80,35 +80,7 @@ module.exports = (env) => {
 
       mode: "development",
 
-      entry: ["./index.tsx"],
-
       devtool: "source-map",
-
-      resolve: {
-        // .mjs needed for https://github.com/graphql/graphql-js/issues/1272
-        extensions: [".ts", ".tsx", ".js", "jsx", ".css", ".mjs"],
-      },
-
-      module: {
-        ...config.module,
-        rules: [
-          {
-            test: /\.css$/,
-            include: path.join(__dirname, "src/components"),
-            use: [
-              "style-loader",
-              {
-                loader: "typings-for-css-modules-loader",
-                options: {
-                  modules: true,
-                  namedExport: true,
-                },
-              },
-            ],
-          },
-          ...config.module.rules,
-        ],
-      },
 
       plugins: [
         ...config.plugins,

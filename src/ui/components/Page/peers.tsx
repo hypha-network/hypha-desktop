@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react"
-import { Radio, User } from "react-feather"
+import React, { useEffect, useState } from 'react'
+import { Radio, User } from 'react-feather'
 
-import { ipfs } from "../../../common/ipfs"
-import useInterval from "../Hooks/useInterval"
-import { Spinner } from "../Spinner"
+import { ipfs } from '../../../common/ipfs'
+import useInterval from '../Hooks/useInterval'
+import { Spinner } from '../Spinner'
 
-import css from "./peers.css"
+import css from './peers.css'
 
 const PeersTable = ({ peers }) => {
   const rows = peers.map((peer, index) => (
     <tr key={index}>
-      <td style={{ width: "49%" }}>{peer.peer._idB58String}</td>
-      <td style={{ width: "51%" }}>{peer.addr.toString("utf8")}</td>
+      <td style={{ width: '49%' }}>{peer.peer._idB58String}</td>
+      <td style={{ width: '51%' }}>{peer.addr.toString('utf8')}</td>
     </tr>
   ))
 
@@ -20,8 +20,8 @@ const PeersTable = ({ peers }) => {
       <table className={css.head}>
         <thead>
           <tr>
-            <td style={{ width: "49%" }}>Peer ID</td>
-            <td style={{ width: "51%" }}>Address</td>
+            <td style={{ width: '49%' }}>Peer ID</td>
+            <td style={{ width: '51%' }}>Address</td>
           </tr>
         </thead>
       </table>
@@ -46,8 +46,8 @@ export const Peers = () => {
     if (ipfs) {
       ipfs
         .id()
-        .then((identity) => setPeerId(identity.id))
-        .catch((err) => console.log(err))
+        .then(identity => setPeerId(identity.id))
+        .catch(err => console.log(err))
     }
   }, [])
 
@@ -55,8 +55,8 @@ export const Peers = () => {
     if (ipfs) {
       ipfs.swarm
         .peers()
-        .then((peersInfo) => setPeers(peersInfo))
-        .catch((error) => console.log(error))
+        .then(peersInfo => setPeers(peersInfo))
+        .catch(error => console.log(error))
         .finally(() => setLoading(false))
     }
   }, 20000)

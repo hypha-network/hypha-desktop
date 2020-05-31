@@ -1,21 +1,21 @@
-import React, { useContext } from "react"
-import { FileText, GitCommit, Radio, Search } from "react-feather"
+import React, { useContext } from 'react'
+import { FileText, GitCommit, Radio, Search } from 'react-feather'
 
-import { PageContext } from "../Context/page"
+import { PageContext } from '../Context/page'
 
-import css from "./side.css"
+import css from './side.css'
 
 export const SideMenu = () => {
   const pageItems = [
-    { name: "Explore", Icon: Search },
-    { name: "Articles", Icon: FileText },
-    { name: "Peers", Icon: Radio },
-    { name: "Bootstrap", Icon: GitCommit },
+    { name: 'Explore', Icon: Search },
+    { name: 'Articles', Icon: FileText },
+    { name: 'Peers', Icon: Radio },
+    { name: 'Bootstrap', Icon: GitCommit }
   ]
 
   const { page, setPage } = useContext(PageContext)
 
-  const click = (target) => {
+  const click = target => {
     if (target === page) {
       return undefined
     }
@@ -25,7 +25,7 @@ export const SideMenu = () => {
   const Item = ({ name, Icon }) => {
     const key = name.toLowerCase()
     return (
-      <li className={page === key ? css.active : ""} onClick={() => click(key)}>
+      <li className={page === key ? css.active : ''} onClick={() => click(key)}>
         <Icon className={css.icon} size={17} />
         {name}
       </li>

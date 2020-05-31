@@ -31,12 +31,16 @@
   margin: 0 auto 0;
 }
 
-.html h1, h2, h3, h4, h5 {
+.html h1,
+h2,
+h3,
+h4,
+h5 {
   color: rgba(65, 48, 38);
 }
 
 .html a {
-  color: #EF8A73;
+  color: #ef8a73;
 }
 
 .html img {

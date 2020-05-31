@@ -13,7 +13,7 @@
     "clean:ui": "shx rm -rf assets/ui/",
     "dev:electron": "wait-on assets/ui/index.js; cross-env NODE_ENV=development electron -r @babel/register src/index.js",
     "dev:ui": "webpack --env development --colors --config webpack.ui.config.js",
-    "format:ui": "prettier --write \"src/ui/**/*.{js,json}\"",
+    "format:ui": "prettier --write \"src/ui/**/*.{js,json,ts,tsx,css}\"",
     "start:dev": "NODE_ENV=development npm run clean:ui; concurrently \"npm:dev:ui\" \"npm:dev:electron\""
   },
   "husky": {
