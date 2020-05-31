@@ -1,11 +1,11 @@
-import { app } from 'electron'
-import fixPath from 'fix-path'
+import { app } from "electron"
+import fixPath from "fix-path"
 
-import main from './main'
+import main from "./main"
 
 fixPath()
 
-app.setAppUserModelId('io.hypha.desktop')
+app.setAppUserModelId("io.hypha.desktop")
 
 if (app.dock) {
   app.dock.hide()
@@ -15,8 +15,8 @@ if (!app.requestSingleInstanceLock()) {
   process.exit(0)
 }
 
-process.on('uncaughtException', console.log)
-process.on('unhandledRejection', console.log)
+process.on("uncaughtException", console.log)
+process.on("unhandledRejection", console.log)
 
 const context = {}
 

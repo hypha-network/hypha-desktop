@@ -1,8 +1,8 @@
-import classNames from 'classnames'
-import React from 'react'
-import { Loader } from 'react-feather'
+import classNames from "classnames"
+import React from "react"
+import { Loader } from "react-feather"
 
-import css from './style.css'
+import css from "./style.css"
 
 export const Spinner = ({ sectionClass, containerClass, text, size }) => {
   const defaultSize = 35
@@ -13,7 +13,7 @@ export const Spinner = ({ sectionClass, containerClass, text, size }) => {
 
   return (
     <div className={containerCss}>
-      <span className={css.text}>{text || ''}</span>
+      <span className={css.text}>{text || ""}</span>
       <Loader
         className={css.spinner}
         width={size || defaultSize}
