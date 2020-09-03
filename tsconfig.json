@@ -1,10 +1,14 @@
 {
   "compilerOptions": {
-    "outDir": "./built",
+    "outDir": "./out",
     "allowJs": true,
     "esModuleInterop": true,
-    "target": "es5",
-    "jsx": "react"
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "jsx": "react",
+    "module": "commonjs",
+    "target": "es6"
   },
+
   "include": ["./src/**/*"]
 }

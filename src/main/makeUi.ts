@@ -1,4 +1,10 @@
-import { app, BrowserWindow, ipcMain, session } from "electron"
+import {
+  app,
+  BrowserWindow,
+  ipcMain,
+  session,
+  BrowserWindowConstructorOptions,
+} from "electron"
 import { join } from "path"
 
 import { SIZE } from "../common/enum"
@@ -26,7 +32,7 @@ const config = {
     nodeIntegration: true,
     webSecurity: false, // TODO
   },
-}
+} as BrowserWindowConstructorOptions
 
 const initWindow = () => {
   const window = new BrowserWindow(config)
@@ -43,8 +49,8 @@ const initWindow = () => {
   return window
 }
 
-export default async (context) => {
-  const window = initWindow(context)
+export default (context) => {
+  const window = initWindow()
   const uiPath = "file://" + join(__dirname, "../../assets/ui", "index.html")
   let apiAddress = null
 
