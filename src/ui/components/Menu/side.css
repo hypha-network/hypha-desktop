@@ -6,7 +6,7 @@
   flex-direction: column;
   flex-shrink: 0;
 
-  background-color: #FDF5ED;
+  background-color: #fdf5ed;
   box-shadow: inset -7px 0 9px -7px rgba(244, 207, 169, 0.5);
   width: 14rem;
   max-width: 14rem;
@@ -41,11 +41,11 @@
 }
 
 .menu li:not(.active):hover {
-  color: #EF8A73;
+  color: #ef8a73;
 }
 
 .menu li:not(.active):hover .icon {
-  color: #EF8A73;
+  color: #ef8a73;
 }
 
 .active {

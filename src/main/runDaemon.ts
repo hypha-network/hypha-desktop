@@ -1,12 +1,11 @@
-import { app, ipcMain } from 'electron'
-import fs from 'fs-extra'
-import { join } from 'path'
+import { app, ipcMain } from "electron"
+import fs from "fs-extra"
+import { join } from "path"
 
-import createIpfsDaemon from '../common/daemon'
-import store from '../common/store'
+import createIpfsDaemon from "../common/daemon"
+import store from "../common/store"
 
 export default async (context) => {
-
   let daemon = null
   let online = null
 
@@ -17,16 +16,18 @@ export default async (context) => {
       return undefined
     }
 
-    const config = store.get('ipfsConfig')
+    const config = store.get("ipfsConfig") as
+      | undefined
+      | { [key: string]: string }
     try {
       daemon = await createIpfsDaemon(config)
       if (!config.path) {
         config.path = daemon.repoPath
-        store.set('ipfsConfig', config)
+        store.set("ipfsConfig", config)
       }
-      console.log('[IPFS] started')
+      console.log("[IPFS] started")
     } catch (error) {
-      console.log('[IPFS]', error)
+      console.log("[IPFS]", error)
     }
   }
 
@@ -35,20 +36,20 @@ export default async (context) => {
       return undefined
     }
 
-    if (!fs.existsSync(join(daemon.repoPath, 'config'))) {
+    if (!fs.existsSync(join(daemon.repoPath, "config"))) {
       daemon = null
       return undefined
     }
 
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       const ipfsDaemon = daemon
       daemon = null
-      ipfsDaemon.stop(180, error => {
+      ipfsDaemon.stop(180, (error) => {
         if (error) {
-          console.log('[IPFS] ', error)
+          console.log("[IPFS] ", error)
           return resolve(error)
         }
-        console.log('[IPFS] stopped')
+        console.log("[IPFS] stopped")
         resolve()
       })
     })
@@ -59,15 +60,15 @@ export default async (context) => {
     await start()
   }
 
-  ipcMain.on('stopIpfs', stop)
-  ipcMain.on('startIpfs', start)
-  ipcMain.on('restartIpfs', restart)
-  ipcMain.on('ipfsConfigChanged', restart)
-  app.on('before-quit', stop)
+  ipcMain.on("stopIpfs", stop)
+  ipcMain.on("startIpfs", start)
+  ipcMain.on("restartIpfs", restart)
+  ipcMain.on("ipfsConfigChanged", restart)
+  app.on("before-quit", stop)
 
   await start()
 
-  ipcMain.on('online-status-changed', (_, isOnline) => {
+  ipcMain.on("online-status-changed", (_, isOnline) => {
     if (online === false && daemon && isOnline) {
       restart()
     }

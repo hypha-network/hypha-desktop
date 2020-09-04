@@ -10,8 +10,8 @@ import css from './bootstrap.css'
 const NodesTable = ({ nodes, remove }) => {
   const rows = nodes.map((node, index) => (
     <tr key={index}>
-      <td width="90%">{node}</td>
-      <td width="10%">
+      <td style={{ width: '90%' }}>{node}</td>
+      <td style={{ width: '10%' }}>
         <Trash2 className={css.trash} size={16} onClick={() => remove(node)} />
       </td>
     </tr>
@@ -22,8 +22,8 @@ const NodesTable = ({ nodes, remove }) => {
       <table className={css.head}>
         <thead>
           <tr>
-            <td width="90%">Boostrap nodes address</td>
-            <td width="10%"></td>
+            <td style={{ width: '90%' }}>Boostrap nodes address</td>
+            <td style={{ width: '10%' }}></td>
           </tr>
         </thead>
       </table>
@@ -107,6 +107,7 @@ export const Bootstrap = () => {
 
       {loading && (
         <Spinner
+          sectionClass={css.section}
           containerClass={css.spinner}
           size={30}
           text="Bootstrap nodes loading ..."

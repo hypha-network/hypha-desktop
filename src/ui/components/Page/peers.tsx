@@ -10,8 +10,8 @@ import css from './peers.css'
 const PeersTable = ({ peers }) => {
   const rows = peers.map((peer, index) => (
     <tr key={index}>
-      <td width="49%">{peer.peer._idB58String}</td>
-      <td width="51%">{peer.addr.toString('utf8')}</td>
+      <td style={{ width: '49%' }}>{peer.peer._idB58String}</td>
+      <td style={{ width: '51%' }}>{peer.addr.toString('utf8')}</td>
     </tr>
   ))
 
@@ -20,8 +20,8 @@ const PeersTable = ({ peers }) => {
       <table className={css.head}>
         <thead>
           <tr>
-            <td width="49%">Peer ID</td>
-            <td width="51%">Address</td>
+            <td style={{ width: '49%' }}>Peer ID</td>
+            <td style={{ width: '51%' }}>Address</td>
           </tr>
         </thead>
       </table>
@@ -78,6 +78,7 @@ export const Peers = () => {
 
       {loading && (
         <Spinner
+          sectionClass={css.section}
           containerClass={css.spinner}
           size={30}
           text="Peers loading ..."

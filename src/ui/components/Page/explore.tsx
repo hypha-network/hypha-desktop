@@ -28,6 +28,7 @@ export const Explore = () => {
 
       {hash && loading && (
         <Spinner
+          sectionClass={css.section}
           containerClass={css.spinner}
           size={30}
           text="Content loading ..."
