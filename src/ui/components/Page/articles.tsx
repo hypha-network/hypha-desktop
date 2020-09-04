@@ -1,9 +1,9 @@
-import React, { useContext } from "react"
+import React, { useContext } from 'react'
 
-import { Spinner } from "../Spinner"
-import css from "./articles.css"
-import { HashContext } from "../Context/hash"
-import { PageContext } from "../Context/page"
+import { Spinner } from '../Spinner'
+import css from './articles.css'
+import { HashContext } from '../Context/hash'
+import { PageContext } from '../Context/page'
 
 export const Articles = () => {
   const { setPage } = useContext(PageContext)

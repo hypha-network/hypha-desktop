@@ -1,11 +1,11 @@
-import React from "react"
+import React from 'react'
 
-import { HashProvider } from "../Context/hash"
-import { PageProvider } from "../Context/page"
-import { Page } from "../Page"
-import { SideMenu } from "../Menu/side"
+import { HashProvider } from '../Context/hash'
+import { PageProvider } from '../Context/page'
+import { Page } from '../Page'
+import { SideMenu } from '../Menu/side'
 
-import * as css from "./style.css"
+import * as css from './style.css'
 
 export const App = () => (
   <PageProvider>
